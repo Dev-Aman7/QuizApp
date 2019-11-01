@@ -1,4 +1,4 @@
-sec=3;
+sec=30;
 
 var decrement=function(sec)
 {
