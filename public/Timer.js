@@ -1,5 +1,4 @@
-sec=30;
-
+var src=0
 var decrement=function(sec)
 {
     console.log('called1');

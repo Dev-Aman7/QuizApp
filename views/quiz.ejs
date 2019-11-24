@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body >
+        <h1>Your result is <%= res%> </h1>
+        <fieldset>
+                <div id="time"></div>
+                <form id="myform" action="/verify" method="POST">
+                  <% for(i = 0 ; i< total ; i++){ %>
+                    <h3 id="qus"+"<%= i %>">;">Question <%=i%></h3>
+                    <input type="text" placeholder="add your question" id="Q1" name="Q1">
+                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
+                    <br>
+                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
+                    <br>
+                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" >
+                    <br>
+                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
+                    <%}%>
+                    <input style="margin: 1rem" type="submit" value="Done">
+                </form>
+        </fieldset>
+    </body>
+</html>
