@@ -5,10 +5,9 @@
     </head>
     <body>
         <form method="POST" action="/signup">
-            <input type="text" name="fname" placeholder="FirstName"><br>
-            <input type="text" name="lname" placeholder="LastName"><br>
-            <input type="text" name="email" placeholder="Email"><br>
-            <input type="text" name="pass"  placeholder="Password"><br>
+            <input type="hidden" name="accType" value='student'>
+            <input type="text" name="username"  placeholder="username"><br>
+            <input type="text" name="password"  placeholder="Password"><br>
             <input type="submit">
         </form>
         

@@ -8,8 +8,9 @@
         <div class="wrapper">
             <form class="form-signin" method="POST" action="/auth">       
               <h2 class="form-signin-heading" style="color: cornsilk;">Please login</h2>
-              <input type="text" class="form-control" name="name" placeholder="Email Address" required="" autofocus="" />
-              <input type="password" class="form-control" name="pass" placeholder="Password" required=""/>      
+              <input type='hidden' name='accType' value='student'>
+              <input type="text" class="form-control" name="username" placeholder="username" required="" autofocus="" />
+              <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
               <br>
               <label class="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me

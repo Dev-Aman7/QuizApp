@@ -6,7 +6,7 @@ var createQuiz=require('./createQuiz');
 var addQuiz=require('./addQuiz')
 var app = express();
 var bodyParser = require('body-parser');
-
+var displayAllQuiz=require('./displayAllQuiz');
 
 var middleware=require('./middlewares')
 
@@ -40,6 +40,8 @@ app.use('/signup',signup);
 app.use('/addQuiz',addQuiz);
 
 app.use('/createQuiz',createQuiz);
+
+app.use('/displayAllQuiz',displayAllQuiz);
 app.listen(3000,(req,res)=>{
     console.log("Server running on 3000");
 });

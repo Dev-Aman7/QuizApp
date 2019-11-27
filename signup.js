@@ -1,51 +1,60 @@
 
 const express = require("express");
-var app=express();
 const router = express.Router();
 var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var facultySignUp=require('./Schemas/facultySchema');
+var studentSignUp=require('./Schemas/studentSchema');
+// var MongoClient = require('mongodb').MongoClient;
+// var url = "mongodb://localhost:27017/";
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
-var add=function(req,res,next)
-{
+var mongoose=require('mongoose');
+mongoose.connect("mongodb://localhost:27017/Quiz");
 
-    /*MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydb");
-        var data={
-            '_id':1,
-            'name':req.body.fname,
-            'date':req.body.pass
-        };
-        dbo.collection("customers").insertOne(data, function(err, res) {
-          if (err) throw err;
-          console.log("1 document inserted");
-          db.close();
-        });
-      });*/
-      console.log('here');
-      next();
-}
 
-router.post('/', urlencodedParser,add, function (req, res){
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydb");
-        var data={
-           
-            name:req.body.fname,
-            pass:req.body.pass
-        };
-        dbo.collection("users").insertOne(data, function(err, res) {
-          if (err) throw err;
-          console.log("1 document inserted");
-          db.close();
-        });
-      });
-      res.redirect('/');
-   });
+
+router.all('/', urlencodedParser, function (req, res){
+
+  if(req.body.accType=='faculty')
+  {
+    var data={
+        
+      username:req.body.username,
+      password:req.body.password
+    };
+    
+    var newuser= new facultySignUp(data);
+    newuser.save()
+    .then(()=>{
+      console.log('faculty saved ' +newuser);
+      res.redirect('/')})
+    .catch((err)=>{
+      console.log('error occured in faculty signup '+err);
+      res.send(err);
+    })
+  }
+  else
+  {
+   
+    var data={
+        
+      username:req.body.username,
+      password:req.body.password
+    };
+    
+    var newuser= new studentSignUp(data);
+    newuser.save()
+    .then(()=>{
+      console.log('studuser saved ' +newuser);
+      res.redirect('/')})
+    .catch((err)=>{
+      console.log('error occured in student signup '+err);
+      res.send(err);
+    })
+  }
+    
+  });
 module.exports=router;
 
 

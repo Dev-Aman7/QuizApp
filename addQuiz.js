@@ -1,14 +1,15 @@
 var express = require("express");
-var qus=require('./views/questionsSchema');
-var quiz=require('./views/quizschema');
+var qus=require('./Schemas/questionsSchema');
+var quiz=require('./Schemas/quizschema');
 var bodyParser = require('body-parser');
 var router=express.Router();
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 var mongoose=require('mongoose');
-mongoose.connect("mongodb://localhost:27017/Quiz");
+
 dataall={};
 router.all('/',urlencodedParser,async (req,res)=>{
+    mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
     dataall=req.body;
     count=req.body.count;
     data={};
@@ -48,7 +49,7 @@ router.all('/',urlencodedParser,async (req,res)=>{
                 {
                     console.log(i);
                     data2(quesId);
-                    res.send(req.body);
+                    res.send('Quiz has successfilly saved');
 
                 } 
                 //console.log(data);       
@@ -62,7 +63,7 @@ router.all('/',urlencodedParser,async (req,res)=>{
     
     
 });
-var data2= async function(quesId)
+var data2= function(quesId)
 {
     console.log("here");
     quizData={

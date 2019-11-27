@@ -1,55 +1,72 @@
-
+var mongoose=require('mongoose');
 const express = require("express");
 const router = express.Router();
 var bodyParser = require('body-parser');
+var std=require('./Schemas/studentSchema');
+var fct=require('./Schemas/facultySchema');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+// var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/Quiz";
+
 
 var sess;
 
 router.post('/', urlencodedParser, function (req, res){
     console.log('login auth');
-
-    MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("mydb");
-    var query = { name: req.body.name , pass: req.body.pass};
-    console.log(req.body.name+" "+req.body.pass);
-    dbo.collection("users").findOne(query,function(err, result) {
-        if (err) throw err;
-        if(result==null)
-        {
-            console.log("could not find");
-            res.redirect('/');
-        }
-        else
-        {
-            sess=req.session;
-            sess.name=req.body.name;
-            sess.pass=req.body.pass;
-            res.sendFile(__dirname+'/public/Home.html');
-        }
-        console.log(result);
-        db.close();
-    });
-    });
-
-    /*var reply='';
-    if(req.body.name=="Aman" && req.body.pass=="dev")
+    mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
+    // MongoClient.connect(url, function(err, db) {
+    // if (err) throw err;
+    // var dbo = db.db("Quiz");
+    var query = { username: req.body.username , password: req.body.password};
+    console.log(req.body.username+" "+req.body.password);
+    if(req.body.accType=='student')
     {
-        sess=req.session;
-        sess.name=req.body.name;
-        sess.pass=req.body.pass;
-        res.redirect('/home');
+        std.findOne(query,function(err, result) {
+            if (err) throw err;
+            if(result==null)
+            {
+                console.log("could not find student");
+                res.redirect('/');
+            }
+            else
+            {
+                sess=req.session;
+                sess.name=req.body.name;
+                sess.pass=req.body.pass;
+                res.redirect('/displayAllQuiz');
+                //res.sendFile(__dirname+'/public/Home.html');
+            }
+            console.log(result);
+        });
     }
     else
-    res.redirect('/');
-    //res.redirect('/res');*/
-   });
+    {
+        fct.findOne(query,function(err, result) 
+        {
+            if (err) throw err;
+            if(result==null)
+            {
+                console.log("could not find faculty");
+                res.redirect('/');
+            }
+            else
+            {
+                sess=req.session;
+                sess.name=req.body.name;
+                sess.pass=req.body.pass;
+                res.redirect('/createQuiz');
+            }
+            console.log(result);
+
+        });
+    }
+    mongoose.connection.close();
+});
+
 
 router.get('/',function(req,res){
-res.redirect('/');
+res.redirect('/')
 })
+
 module.exports=router;
