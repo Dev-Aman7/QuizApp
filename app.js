@@ -1,13 +1,13 @@
-var http = require("http");
+
 var express = require('express');
 var session=require('express-session');
-var fs=require('fs');
+
 var createQuiz=require('./createQuiz');
 var addQuiz=require('./addQuiz')
 var app = express();
 var bodyParser = require('body-parser');
 var displayAllQuiz=require('./displayAllQuiz');
-
+var showQuiz=require('./showQuiz');
 var middleware=require('./middlewares')
 
 var verify=require('./verify');
@@ -40,6 +40,8 @@ app.use('/signup',signup);
 app.use('/addQuiz',addQuiz);
 
 app.use('/createQuiz',createQuiz);
+
+app.use('/showQuiz',showQuiz);
 
 app.use('/displayAllQuiz',displayAllQuiz);
 app.listen(3000,(req,res)=>{

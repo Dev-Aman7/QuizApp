@@ -3,24 +3,29 @@
     <head>
 
     </head>
-    <body >
-        <h1>Your result is <%= res%> </h1>
+    <body onload="setTimeout(decrement(30),60)">
         <fieldset>
                 <div id="time"></div>
                 <form id="myform" action="/verify" method="POST">
-                  <% for(i = 0 ; i< total ; i++){ %>
-                    <h3 id="qus"+"<%= i %>">;">Question <%=i%></h3>
-                    <input type="text" placeholder="add your question" id="Q1" name="Q1">
-                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
-                    <br>
-                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
-                    <br>
-                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" >
-                    <br>
-                    <input type="text" placeholder="add your option" name="opt"+"<%= i %>" > 
-                    <%}%>
-                    <input style="margin: 1rem" type="submit" value="Done">
+                <ol>
+                    <% data.forEach(function(dat,index){ %>
+                    
+                        <li><%= dat.question %></li>
+                        <p> Here is your question</p>
+                        <input type="radio" value="a" id="Q1" name=<% 'Q'+index %>> a <%= dat.option1 %>
+                        <br>
+                        <input type="radio" value="b" id="Q1" name=<% 'Q'+index %>> b  <%= dat.option2 %>
+                        <br>
+                        <input type="radio" value="c" id="Q1" name=<% 'Q'+index %>> c  <%= dat.option3 %>
+                        <br>
+                        <input type="radio" value="d" id="Q1" name=<% 'Q'+index %>> d  <%= dat.option4 %>
+
+                    <% }) %>
+                </ol>
+                    <input type="submit" value="end">
                 </form>
+                <script src="Timer.js"></script>
+                
         </fieldset>
     </body>
 </html>

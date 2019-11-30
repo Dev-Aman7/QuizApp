@@ -3,7 +3,7 @@
 module.exports = {
     formHandler: function(req, res, next){
         var sess=req.session;
-        if(sess.name!=null && sess.pass!=null)
+        if(sess.username!=null && sess.password!=null)
         {
             next();
         }
@@ -13,15 +13,3 @@ module.exports = {
     }
 }
 
-module.exports = {
-    formHandler: function(req, res, next){
-        var sess=req.session;
-        if(sess.name!=null && sess.pass!=null)
-        {
-            next();
-        }
-        else{
-            res.redirect('/');
-        }
-    }
-}

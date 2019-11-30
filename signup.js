@@ -10,11 +10,13 @@ var studentSignUp=require('./Schemas/studentSchema');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 var mongoose=require('mongoose');
-mongoose.connect("mongodb://localhost:27017/Quiz");
+mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
 
 
 
 router.all('/', urlencodedParser, function (req, res){
+
+  console.log("The route at signup");
 
   if(req.body.accType=='faculty')
   {

@@ -65,6 +65,7 @@ router.all('/',urlencodedParser,async (req,res)=>{
 });
 var data2= function(quesId)
 {
+    quesId.shift();
     console.log("here");
     quizData={
         quizName: dataall.quizName,

@@ -9,22 +9,43 @@ var url = "mongodb://localhost:27017/Quiz";
 
 router.all('/',urlencodedParser,function(req,res){
     mongoose.connect(url);
-    quizes.remove({})
-    {
-        console.log('removed');
-    }
-    quizes.find({},(err,result)=>
-    {
+    //for clearing db(Be careful);
+    // quizes.remove({},(err)=>
+    // {
+    //     if(err)
+    //     {
+    //         console.log("error while removing : "+err);
+    //         res.send(err);
+    //     }
+    //     else
+    //     {
+    //         console.log('removed');
+    //         res.send("done");
+    //     }
+    // });
+    quizes.find({},(err,result)=>{
         if(err)
         {
-            res.send(err);
+            res.send('err')
         }
         else
-        {
-            res.send(result);
-        }
-        
+        res.render('allQuizes',{data:result})
     });
+    // quizes.find({})
+    // .populate({
+    //     path: 'questionID',
+    //     select :"question answer"})
+    // .exec(function (err, Quiz) {
+    //     if (err) {
+    //         //res.send('some error');
+    //     }
+    //     else
+    //     {
+    //         console.log(Quiz);
+    //         res.render('allQuizes',{data: Quiz})
+    //     }
+        
+    // });
     
 });
 

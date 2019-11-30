@@ -9,4 +9,4 @@ var questionSchema=new schema({
     option4 : { type: String, required: true},
     answer  : { type: String}
 })
-module.exports=mongoose.model('quiz',questionSchema);
+module.exports=mongoose.model('question',questionSchema);
