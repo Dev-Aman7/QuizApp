@@ -4,23 +4,7 @@
 
     </head>
     <body >
-        <h1>Your result is <%= res%> </h1>
-        <fieldset>
-                <div id="time"></div>
-                <form id="myform" action="/verify" method="POST">
-                  <% for(i = 0 ; i<5 ; i++){ %>
-                    <h3 style="color:<%= re1%>;">Question <%=i%></h3>
-                    <p> Here is your question</p>
-                    <input type="radio" value="a" id="Q1" name="Q1"> a. option one
-                    <br>
-                    <input type="radio" value="b" id="Q1" name="Q1"> b  option two
-                    <br>
-                    <input type="radio" value="c" id="Q1" name="Q1"> c  option three
-                    <br>
-                    <input type="radio" value="d" id="Q1" name="Q1"> d  option four
-                    <%}%>
-                    <input style="margin: 1rem" type="submit" value="Done">
-                </form>
-        </fieldset>
+        <h1>Your result is <%= result %> </h1>
+        
     </body>
 </html>

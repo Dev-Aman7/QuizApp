@@ -11,7 +11,7 @@
     <% data.forEach(function(dat) { %>
         <li><%= dat.quizName %></li>
         <li><%= dat.totalQuestion%></li>
-        <li><button><a href="showQuiz?quiz=<%= dat.quizName %> "> attempt</a></button></li>
+        <li><button><a href="showQuiz?quiz=<%= dat._id %> "> attempt</a></button></li>
     <% }); %>
   </ul>
  </body>

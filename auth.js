@@ -32,8 +32,8 @@ router.post('/', urlencodedParser, function (req, res){
             else
             {
                 sess=req.session;
-                sess.name=req.body.name;
-                sess.pass=req.body.pass;
+                sess.username=req.body.username;
+                sess.password=req.body.password;
                 res.redirect('/displayAllQuiz');
                 //res.sendFile(__dirname+'/public/Home.html');
             }

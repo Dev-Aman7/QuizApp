@@ -14,7 +14,7 @@ function create()
             s+="<input type='text' placeholder='option' value='a' name=op"+ p+"><br><br>";;
             
         }
-        s+="<input type='text' placeholder='answer' value='1' name=a" +i+"><br><br>";
+        s+="<input type='number' placeholder='answer' value='1' name=a" +i+"><br><br>";
     }
     s+="<input type='hidden' name='count' value='"+val+"'>";
     s+="<input type='submit' value='go'>";

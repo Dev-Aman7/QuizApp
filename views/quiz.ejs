@@ -7,18 +7,21 @@
         <fieldset>
                 <div id="time"></div>
                 <form id="myform" action="/verify" method="POST">
+                    <p><%= quizName %></p>
+                    <input type='hidden' name='quizName' value='<%= quizName %>'>
                 <ol>
                     <% data.forEach(function(dat,index){ %>
                     
                         <li><%= dat.question %></li>
                         <p> Here is your question</p>
-                        <input type="radio" value="a" id="Q1" name=<% 'Q'+index %>> a <%= dat.option1 %>
+                        
+                        <input type="radio" value="1" id="Q1" name="<%= 'Q'+index %>">  <%= dat.option1 %>
                         <br>
-                        <input type="radio" value="b" id="Q1" name=<% 'Q'+index %>> b  <%= dat.option2 %>
+                        <input type="radio" value="2" id="Q1" name="<%= 'Q'+index %>">   <%= dat.option2 %>
                         <br>
-                        <input type="radio" value="c" id="Q1" name=<% 'Q'+index %>> c  <%= dat.option3 %>
+                        <input type="radio" value="3" id="Q1" name="<%= 'Q'+index %>">   <%= dat.option3 %>
                         <br>
-                        <input type="radio" value="d" id="Q1" name=<% 'Q'+index %>> d  <%= dat.option4 %>
+                        <input type="radio" value="4" id="Q1" name="<%= 'Q'+index %>">   <%= dat.option4 %>
 
                     <% }) %>
                 </ol>
