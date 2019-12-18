@@ -1,20 +1,24 @@
 var express = require("express");
-var qus=require('./Schemas/questionsSchema');
-var quiz=require('./Schemas/quizschema');
+var qus=require('../Schemas/questionsSchema');
+var quiz=require('../Schemas/quizschema');
 var bodyParser = require('body-parser');
+var person=require('../Schemas/person');
 var router=express.Router();
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 var mongoose=require('mongoose');
 
 dataall={};
-router.all('/',urlencodedParser,async (req,res)=>{
+var sess;
+//route called by addQuestion.ejs after submission of all quetion by faculty
+router.all('/',urlencodedParser,(req,res)=>{
     mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
     dataall=req.body;
     count=req.body.count;
     data={};
     quesId=[];
-    // console.log(quesId);
+    sess=req.session;
+    console.log(sess);
     for(i=1;i<=count;i++)
     {
         console.log('init '+i);
@@ -37,7 +41,7 @@ router.all('/',urlencodedParser,async (req,res)=>{
         // console.log('answer is '+req.body[s]);
 
         var newQuestion= new qus(data);
-        var d= await newQuestion.save()
+        newQuestion.save()
         .then(() => {
             console.log('i here '+i);
             return quesId[i]=(newQuestion._id);
@@ -63,7 +67,7 @@ router.all('/',urlencodedParser,async (req,res)=>{
     
     
 });
-var data2= function(quesId)
+var data2=function(quesId)
 {
     quesId.shift();
     console.log("here");
@@ -75,8 +79,24 @@ var data2= function(quesId)
     console.log(quizData);
     var val2=new quiz(quizData);
     val2.save()
-    .then(item=>{
+    .then(()=>{
+        person.findOne({username:sess.username, accountType: 'faculty'},(err,result)=>
+        {
+            if(err)
+            {
+                console.log('error in person');
+            }
+            else{
+                
+                result.quizes.push(val2._id);
+                result.save();
+            }
+            console.log(result);
+        });
+        
+        //console.log(d);
         console.log('done');
+
     })
     .catch(err=>{
         console.log(err);

@@ -3,7 +3,7 @@ var router=express.Router();
 var mongoose=require('mongoose');
 var bodyParser = require('body-parser');
 var localStorage=require('localStorage');
-var quizes=require('./Schemas/quizschema')
+var quizes=require('../Schemas/quizschema')
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 router.get('/',urlencodedParser,(req,res)=>

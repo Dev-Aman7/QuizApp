@@ -2,8 +2,7 @@
 const express = require("express");
 const router = express.Router();
 var bodyParser = require('body-parser');
-var facultySignUp=require('./Schemas/facultySchema');
-var studentSignUp=require('./Schemas/studentSchema');
+var person=require('./Schemas/person');
 // var MongoClient = require('mongodb').MongoClient;
 // var url = "mongodb://localhost:27017/";
 
@@ -13,12 +12,25 @@ var mongoose=require('mongoose');
 mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
 
 
-
+//route called on the time of login
 router.all('/', urlencodedParser, function (req, res){
 
   console.log("The route at signup");
-
-  if(req.body.accType=='faculty')
+  var data={
+    accountType:req.body.accType,    
+    username:req.body.username,
+    password:req.body.password
+  };
+  var newuser= new person(data);
+    newuser.save()
+    .then(()=>{
+      console.log('user saved ' +newuser.accountType);
+      res.redirect('/')})
+    .catch((err)=>{
+      console.log('error occured in faculty signup '+err);
+      res.send(err);
+    })
+  /*if(req.body.accType=='faculty')
   {
     var data={
         
@@ -54,7 +66,7 @@ router.all('/', urlencodedParser, function (req, res){
       console.log('error occured in student signup '+err);
       res.send(err);
     })
-  }
+  }*/
     
   });
 module.exports=router;

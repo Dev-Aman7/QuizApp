@@ -2,15 +2,15 @@
 var express = require('express');
 var session=require('express-session');
 
-var createQuiz=require('./createQuiz');
-var addQuiz=require('./addQuiz')
+var createQuiz=require('./faculty/createQuiz');
+var addQuiz=require('./faculty/addQuiz')
 var app = express();
 var bodyParser = require('body-parser');
-var displayAllQuiz=require('./displayAllQuiz');
-var showQuiz=require('./showQuiz');
-var middleware=require('./middlewares')
+var displayAllQuiz=require('./student/displayAllQuiz');
+var showQuiz=require('./student/showQuiz');
+var middleware=require('./middleware/middlewares')
 
-var verify=require('./verify');
+var verify=require('./student/verify');
 var auth=require('./auth');
 var signup=require('./signup');
 //var quiz=require('./views/quizschema');
@@ -25,7 +25,7 @@ app.get('/home',middleware.formHandler,function(req,res){
     res.sendFile(__dirname+'/public/Home.html');
 });
 app.get('/',function(req,res){
-    res.sendFile(__dirname+'/public/login.html');
+    res.sendFile(__dirname+'/public/login/login.html');
 });
 app.use('/auth',auth);
 

@@ -3,7 +3,7 @@ var router=express.Router();
 var mongoose=require('mongoose');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
-var quizes=require('./Schemas/quizschema')
+var quizes=require('../Schemas/quizschema')
 mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
 var url = "mongodb://localhost:27017/Quiz";
 
