@@ -2,7 +2,7 @@ var mongoose    = require('mongoose');
 mongoose.set('useCreateIndex', true);
 
 require('dotenv').config();
-let db_url = process.env.url;
+let db_url = process.env.url_mlab;
 let connect = ()=>{
     //CONNECTING TO MONGODB ON START
     mongoose.connect(db_url, {useNewUrlParser : true, useUnifiedTopology: true },(err) =>{
