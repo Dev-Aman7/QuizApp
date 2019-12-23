@@ -6,13 +6,10 @@ var person=require('../Schemas/person');
 var router=express.Router();
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
-var mongoose=require('mongoose');
-
 dataall={};
 var sess;
 //route called by addQuestion.ejs after submission of all quetion by faculty
 router.all('/',urlencodedParser,(req,res)=>{
-    mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
     dataall=req.body;
     count=req.body.count;
     data={};

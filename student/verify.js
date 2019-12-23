@@ -14,6 +14,7 @@ router.all('/', urlencodedParser,mid.formHandler,async function (req, res,next){
     var count=0;
     console.log(result);
     let d= await result.forEach((element,index) => {
+        console.log('request is', req.body);
         console.log('Q'+index);
         console.log(req.body['Q'+index]+"   "+element.answer)
         if(element.answer==req.body['Q'+index])

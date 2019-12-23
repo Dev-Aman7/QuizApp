@@ -8,9 +8,6 @@ var person=require('./Schemas/person');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
-var mongoose=require('mongoose');
-mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
-
 
 //route called on the time of login
 router.all('/', urlencodedParser, function (req, res){

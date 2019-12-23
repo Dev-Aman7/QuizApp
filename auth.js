@@ -6,14 +6,13 @@ var person=require('./Schemas/person');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 // var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/Quiz";
+
 
 
 var sess;
 //route called on the time of login of account 
 router.post('/', urlencodedParser, function (req, res){
     console.log('login auth');
-    mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
     // MongoClient.connect(url, function(err, db) {
     // if (err) throw err;
     // var dbo = db.db("Quiz");
@@ -80,7 +79,6 @@ router.post('/', urlencodedParser, function (req, res){
     //         console.log(result);
     //     });
     // }
-    mongoose.connection.close();
 });
 
 

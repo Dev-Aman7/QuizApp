@@ -8,7 +8,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 router.get('/',urlencodedParser,(req,res)=>
 {
-    mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
     var quiz=req.param('quiz');
     quizes.findOne({_id: quiz})
     .populate({

@@ -13,19 +13,21 @@ var middleware=require('./middleware/middlewares')
 var verify=require('./student/verify');
 var auth=require('./auth');
 var signup=require('./signup');
+var db=require('./db/setup');
+db.connect();
 //var quiz=require('./views/quizschema');
 //var createQuiz=require('./createQuiz');
 
 app.set('view engine','ejs');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
-app.use(session({secret: 'user'}));
+app.use(session({secret: 'user',resave: true, saveUninitialized: true}));
 app.use(express.static("public"));
 
 app.get('/home',middleware.formHandler,function(req,res){
     res.sendFile(__dirname+'/public/Home.html');
 });
 app.get('/',function(req,res){
-    res.sendFile(__dirname+'/public/login/login.html');
+    res.sendFile(__dirname+'/public/login.html');
 });
 app.use('/auth',auth);
 

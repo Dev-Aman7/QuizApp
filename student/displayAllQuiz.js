@@ -4,11 +4,9 @@ var mongoose=require('mongoose');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var quizes=require('../Schemas/quizschema')
-mongoose.connect("mongodb://localhost:27017/Quiz",{ useNewUrlParser: true });
-var url = "mongodb://localhost:27017/Quiz";
+
 
 router.all('/',urlencodedParser,function(req,res){
-    mongoose.connect(url);
     //for clearing db(Be careful);
     // quizes.remove({},(err)=>
     // {
@@ -29,7 +27,10 @@ router.all('/',urlencodedParser,function(req,res){
             res.send('err')
         }
         else
-        res.render('allQuizes',{data:result})
+        {
+            console.log(result)
+            res.render('allQuizes',{data:result})
+        }
     });
     // quizes.find({})
     // .populate({
