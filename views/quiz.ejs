@@ -3,12 +3,13 @@
     <head>
 
     </head>
-    <body onload="setTimeout(decrement(30),60)">
+    <body onload="setTimeout(decrement(<%= time %>),60)">
         <fieldset>
                 <div id="time"></div>
                 <form id="myform" action="/verify" method="POST">
                     <p><%= quizName %></p>
                     <input type='hidden' name='quizName' value='<%= quizName %>'>
+                    <input type='hidden' name='id' value='<%= id %>'>
                 <ol>
                     <% data.forEach(function(dat,index){ %>
                     

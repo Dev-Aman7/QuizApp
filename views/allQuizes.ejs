@@ -3,17 +3,66 @@
 
 <head>
   <meta charset="utf-8">
+  <!--Bootsrap 4 CDN-->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <p> Your Quiz</p>
+  <% if(message!='No'){ %>
+  <div class="modal fade bd-example-modal-sm" id="notify" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <%= message %>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><img src="logo.png" alt="" style="height: 2rem;"> </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="/home">Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
   <ul>
-    <% data.forEach(function(dat) { %>
-        <li><%= dat.quizName %></li>
-        <li><%= dat.totalQuestion%></li>
-        <li><button><a href="showQuiz?quiz=<%= dat._id %> "> attempt</a></button></li>
-    <% }); %>
+    <div class="container">
+      <% data.forEach(function(dat) { %>
+      <div class='card'>
+        <div class="card-header">
+          <%= dat.quizName %>
+        </div>
+        <div class='card-body'>
+          <h6 class='card-subtitle'> Author <%= dat.author%> </h6>
+          <h6 class='card-subtitle'> Total Questions <%= dat.totalQuestion%> </h6>
+          <hr>
+          <a href="showQuiz?quiz=<%= dat._id %> ">
+            <button class="btn btn-primary" style="height: 2rem;">Attempt</button>
+          </a>
+        </div>
+      </div>
+      <% }); %>
   </ul>
- </body>
+  </div>
+  <script>
+    $('#notify').modal('show');
+  </script>
+</body>
 
 </html>

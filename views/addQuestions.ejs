@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-    </head>
-    <body>
-      
-        <p id="first">Enter number of questions</p>
-        
-            <input type="number" id="count"  value=0>
-            <input type=submit onclick="create()">
-        <form action='/addQuiz' method='POST'>
-            <div id="questions"></div>
-        </form>
-        <script src="../views/myscript.js"></script>
-    </body>
+
+<head>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="logo.png" alt="" style="height: 2rem;"> </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/home">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                Enter number fo questions
+                <input type="number" id="count" value=0>
+                <input type=submit onclick="create()">
+            </div>
+        </div>
+
+
+        <div class='card'>
+            <form action='/addQuiz' method='POST'>
+                <h5>Enter time for the quiz in minutes
+
+                    <input class='d-flex justify-content-end form-control' type="number" name='time'>
+                </h5>
+                <hr>
+                <div id="questions"></div>
+            </form>
+
+        </div>
+    </div>
+    <script src="../views/myscript.js"></script>
+</body>
+
 </html>

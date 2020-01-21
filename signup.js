@@ -1,32 +1,31 @@
-
 const express = require("express");
 const router = express.Router();
-var bodyParser = require('body-parser');
-var person=require('./Schemas/person');
+var bodyParser = require("body-parser");
+var person = require("./Schemas/person");
 // var MongoClient = require('mongodb').MongoClient;
 // var url = "mongodb://localhost:27017/";
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
-
 //route called on the time of login
-router.all('/', urlencodedParser, function (req, res){
-
+router.all("/", urlencodedParser, function(req, res) {
   console.log("The route at signup");
-  var data={
-    accountType:req.body.accType,    
-    username:req.body.username,
-    password:req.body.password
+  var data = {
+    accountType: req.body.accType,
+    username: req.body.username,
+    password: req.body.password
   };
-  var newuser= new person(data);
-    newuser.save()
-    .then(()=>{
-      console.log('user saved ' +newuser.accountType);
-      res.redirect('/')})
-    .catch((err)=>{
-      console.log('error occured in faculty signup '+err);
-      res.send(err);
+  var newuser = new person(data);
+  newuser
+    .save()
+    .then(() => {
+      console.log("user saved " + newuser.accountType);
+      res.redirect("/");
     })
+    .catch(err => {
+      console.log("error occured in faculty signup " + err);
+      res.send(err);
+    });
   /*if(req.body.accType=='faculty')
   {
     var data={
@@ -64,10 +63,5 @@ router.all('/', urlencodedParser, function (req, res){
       res.send(err);
     })
   }*/
-    
-  });
-module.exports=router;
-
-
-
-
+});
+module.exports = router;
