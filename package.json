@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rockzo77/QuizApp.git"
+    "url": "git+https://github.com/Dev-Aman7/QuizApp.git"
   },
   "author": "Aman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Rockzo77/QuizApp/issues"
+    "url": "https://github.com/Dev-Aman7/QuizApp/issues"
   },
-  "homepage": "https://github.com/Rockzo77/QuizApp#readme"
+  "homepage": "https://github.com/Dev-Aman7/QuizApp#readme"
 }
