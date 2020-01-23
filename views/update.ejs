@@ -40,15 +40,15 @@
 
 
         <div class='card'>
-            <form action='/addQuiz' method='POST'>
+            <form action='/update' method='POST'>
                 <h5>Enter time for the quiz in minutes
 
                     <input class='d-flex justify-content-end form-control' type="number" name='time'>
                 </h5>
                 <hr>
                 <div id="questions"></div>
+                <input type='hidden' name='id' value='<%=id%>'>
             </form>
-
         </div>
     </div>
     <script src="../views/myscript.js"></script>

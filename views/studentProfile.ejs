@@ -32,18 +32,13 @@
         </div>
     </nav>
     <ul>
-        <div class="container">
-            <% data.forEach(function(dat,ind) { %>
+        <div class="container" style="position: relative;top: 1rem;">
+            <% data.attemptedQuiz.forEach(function(dat,ind) { %>
             <div class="card">
-                <h3 class="card-title">dat.quizes[ind].quizName</h3>
-                <div class="card-link">
-                    <a href='/result?quizId=<%=dat.quizes[ind]._id%>'>
-                        <button class="btn btn-primary" name="id">See result</button>
-                    </a>
-                </div>
-                <div class="card-link">
-                    <a href='/update?quizId=<%=dat.quizes[ind]._id%>'>
-                        <button class="btn btn-primary" name="id">See result</button>
+                <h5 class="card-header"><%=dat.quizId.quizName%></h5>
+                <div class="card-body">
+                    <a class="card-link btn btn-primary" href='/result?quizId=<%=dat._id%>'>
+                        See result
                     </a>
                 </div>
             </div>

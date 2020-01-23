@@ -5,13 +5,18 @@ var person = require("../Schemas/person");
 router.all("/", (req, res) => {
   person
     .findOne({ username: req.cookies.username })
-    .populate("attemtedQuiz")
-    .populate("quizes")
+    .populate({
+      path: "attemptedQuiz",
+      populate: "quizId"
+    })
+    .populate({
+      path: "quizes"
+    })
     .exec((err, result) => {
       if (err) {
         console.log("we got some err in profile");
       } else {
-        console.log(result);
+        // console.log(result);
         if (result.accountType == "faculty") {
           //   res.send(result);
           console.log("in faculty", result.accountType);

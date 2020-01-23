@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var quizschema = new Schema({
   quizName: { type: String, required: true },
-  author: String,
+  author: { type: String, default: "NA" },
   totalQuestion: { type: String, default: 5 },
   questionID: [
     {
@@ -11,6 +11,12 @@ var quizschema = new Schema({
       ref: "question"
     }
   ],
-  time: { type: Number, default: 30 }
+  time: { type: Number, default: 30 },
+  comment: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "comment"
+    }
+  ]
 });
 module.exports = mongoose.model("quiz", quizschema);

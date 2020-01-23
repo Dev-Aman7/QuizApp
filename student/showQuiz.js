@@ -22,11 +22,11 @@ router.get("/", urlencodedParser, (req, res) => {
           .findById(localStorage.getItem("userId"))
           .populate("attemptedQuiz")
           .then(val => {
-            console.log(val);
+            // console.log(val);
             for (var i = 0; i < val.attemptedQuiz.length; i++) {
-              console.log(val.attemptedQuiz[i].quizId, String(Quiz._id));
+              // console.log(val.attemptedQuiz[i].quizId, String(Quiz._id));
               if (String(val.attemptedQuiz[i].quizId) == String(Quiz._id)) {
-                res.redirect("/displayAllQuiz");
+                res.redirect("/result?quizId=" + val.attemptedQuiz[i]._id);
                 return 0;
               }
             }

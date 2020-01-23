@@ -2,32 +2,27 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var comment = require("../Schemas/commentSchema");
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var quizes = require("../Schemas/quizschema");
 
 router.all("/", urlencodedParser, function(req, res) {
-  //for clearing db(Be careful);
-  // quizes.remove({},(err)=>
-  // {
-  //     if(err)
-  //     {
-  //         console.log("error while removing : "+err);
-  //         res.send(err);
-  //     }
-  //     else
-  //     {
-  //         console.log('removed');
-  //         res.send("done");
-  //     }
-  // });
-  quizes.find({}, (err, result) => {
-    if (err) {
-      res.send("err");
-    } else {
-      //console.log(result)
-      res.render("allQuizes", { data: result, message: "No" });
-    }
-  });
+  quizes
+    .find()
+    .populate({
+      path: "comment",
+      populate: "replies"
+    })
+    .exec((err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("err");
+      } else {
+        console.log(result);
+        // res.send(result);
+        res.render("allQuizes", { data: result, message: "No" });
+      }
+    });
 });
 
 module.exports = router;
